@@ -11,3 +11,7 @@
 	padding-left: 100px;
 	background-color: rgba(183, 249, 255, 0.5);
 }
+header {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

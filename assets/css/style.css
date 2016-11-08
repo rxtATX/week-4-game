@@ -1,0 +1,13 @@
+* {
+	font-family: 'Inknut Antiqua', serif;
+	}
+.charBtn:hover {
+	
+}
+#characterSelectPanel {
+	border: inset;
+	border-color: steelblue;
+	padding: 20px;
+	padding-left: 100px;
+	background-color: rgba(183, 249, 255, 0.5);
+}

@@ -1,78 +1,131 @@
-	var finn = {
-		healthPoints: 200
-		attackPoints: 8
-		attackPower: 1
-		isPlayer = false	
-		isUnderAttack = false
-	}
 
-	var LemonGrab = {
-		healthPoints: 230
-		attackPoints: 10
-		attackPower: 1
-		isPlayer = false
-		isUnderAttack = false
-	}
+$(document).ready(function() {
 
-	var theIceKing = {
-		healthPoints: 250
-		attackPoints: 12
-		attackPower: 1
-		isPlayer = false
-		isUnderAttack = false
-	}
+var hasPlayerBeenChosen = 0
+$("#vsSymbol").hide();
+$("#attackBtn").hide();
 
-	var LSP = {
-		healthPoints: 150
-		attackPoints: 16
-		attackPower: 1
-		isPlayer = false
-		isUnderAttack = false
-	}
+// var playerChoices {
+//  [finn = {
+	// 	healthPoints: 200
+	// 	attackPoints: 8
+	// 	interval: 1
+	// },
 
-var gamePlay = {
+// 	LemonGrab = {
+// 		healthPoints: 230
+// 		attackPoints: 10
+// 		interval: 1
+// 	},
 
-	selectedByPlayer: function () {
-		isPlayer = true
-		attackPower = attackPoints + attackPoints
-		//display in playerLocation
-	}
+// 	theIceKing = {
+// 		healthPoints: 250
+// 		attackPoints: 12// 		
+// 		interval: 1
+// 	},
 
-	attackMode: function () {
+// 	LSP = {
+// 		healthPoints: 150
+// 		attackPoints: 16
+// 		interval: 1
+// 	}]
 
-	}
+// var gamePlay = {
 
-	opponentOfPlayer: function () {
-		//display in enemyLocation
-		counterAttack = attackPoints
+// 	selectedByPlayer: function () {
+// 		isPlayer = true
+// 		interval = attackPoints + attackPoints
+// 		//display in playerLocation
+// 	}
 
-	}
+// 	attackMode: function () {
+
+// 	}
+
+// 	opponentOfPlayer: function () {
+// 		//display in enemyLocation
+// 		counterAttack = attackPoints
+
+// 	}
+// }
+
+// //Character Creation
+// 	//
+
+// //Game Start
+// $("gameStartHandler").on("click", function () {
+
+// 	//Character moves to playerLocation.
+// 	if (finn == isPlayer) {
+// 		$(".finn").appendTo("#playerLocation");
+// 	} else if (theIceKing == isPlayer) {
+// 		$(".theIceKing").appendTo("#playerLocation");
+// 	} else if (LSP == isPlayer) {
+// 		$(".LSP").appendTo("#playerLocation");
+// 	} else if (LemonGrab == isPlayer) {
+// 		$(".LemonGrab").appendTo("#playerLocation");
+// 	};
+// 	//Enemies move to enemyLocation.
+// 	// $(!isPlayer).innerHTML("")
+// 	// Vs symbol appears in vsLocation.
+
+
+// 	//Attack button becomes functional.
+// })
+//isPlayerSelector
+if (hasPlayerBeenChosen == 0) {
+	$(".characterOption").on("click", function () {	
+		//Click to select player character.
+		// var chosenCharacter = $(this).addClass("isPlayer");
+		hasPlayerBeenChosen = 1;
+		$("#vsSymbol").show(1000);
+		$("#attackBtn").show();
+	})
 }
+//combatantSelector on click function () {
+if (hasPlayerBeenChosen == 1) {
+	$(".characterOption").on("click", function () {	
+		var chosenEnemy = $(this).addClass("isUnderAttack");
+	})
+}
+	//The enemy character is labelled as current enemy.
+// }
 
-$("gameStartHandler").on("click", function () {
-	
-})
-/*When the game starts, the player will choose a character by clicking on the
- fighter's picture. The player will fight as that character for the rest of the game.*/
+//Stats
+	//HP displayed at the bottom of the defender's picture.
+	//HP at the bottom of the player character's picture.
 
-/*The player must then defeat all of the remaining fighters. 
-Enemies should be moved to a different area of the screen.*/
+//combatMechanicsHandler
+// 	//The player will now be able to click the attack button.
+// $("#attackBtn").on("click", function () {
+// 		// function buildinterval {
+// 		// 	attackPower = interval++;
+// 		// }
+// 		// function attackPointsTotal {
+// 		// 	attackPoints = attackPoints * attackPower;
+// 		// }
+// 	// Whenever the player clicks attack, their character damages the defender. 
+// 	// The opponent will lose HP (health points). 
+// 	// The opponent character will instantly counter the attack.
+// 	// the player's character will lose some of their HP. 
+// })
 
-//The player chooses an opponent by clicking on an enemy's picture.
 
-//Once the player selects an opponent, that enemy is moved to a defender area.
+//combatantDeathHandler
+	//enemy health is 0 or below, remove label
+	//combatantSelector occurs again
+	//The player wins the game by defeating all enemy characters. 
 
-//The player will now be able to click the attack button.
+//gameOver
+	//playerDeathHandler
+		//The player loses the game the game if their character's HP falls to zero or below.
+	//Display gameOver
+	// hasPlayerBeenChosen = 0;
+	// //reset photo locations
+	// $("#vsLocation").hide();
+	//hide character stats
+	//reset character stats
 
-/*Whenever the player clicks attack, their character damages the defender. 
-The opponent will lose HP (health points). 
-These points are displayed at the bottom of the defender's picture.
-The opponent character will instantly counter the attack. When that happens, 
-the player's character will lose some of their HP. 
-These points are shown at the bottom of the player character's picture.
-The player will keep hitting the attack button in an effort to defeat their opponent.*/
 
-/*When the defender's HP is reduced to zero or below, remove the enemy 
-from the defender area. The player character can now choose a new opponent.
-The player wins the game by defeating all enemy characters. 
-The player loses the game the game if their character's HP falls to zero or below.*/
+
+});

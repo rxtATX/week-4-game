@@ -78,7 +78,7 @@ if (hasPlayerBeenChosen == 0) {
 		//Click to select player character.
 		// var chosenCharacter = $(this).addClass("isPlayer");
 		hasPlayerBeenChosen = 1;
-		$("#vsSymbol").show(1000);
+		$("#vsSymbol").fadeIn(500);
 		$("#attackBtn").show();
 	})
 }

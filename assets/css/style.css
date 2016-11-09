@@ -1,23 +1,21 @@
 * {
 	font-family: 'Inknut Antiqua', serif;
 	}
-.charBtn:hover {
-	
-}
 #characterSelectPanel {
 	border: inset;
 	border-color: steelblue;
 	padding: 20px;
 	padding-left: 100px;
+	padding-bottom: 100px;
 	background-color: rgba(183, 249, 255, 0.5);
 }
 header {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-
-@media screen (max-width: 768px) {
-	img {
-		size: 50%;
-	}
+.btn-danger {
+	margin: 45px;
+}
+.playerLocation {
+	float: right;
 }

@@ -1,7 +1,9 @@
 
 $(document).ready(function() {
 
-var hasPlayerBeenChosen = 0
+$("h1").html("Select your character!");
+var hasPlayerBeenChosen = false;
+var hasEnemyBeenChosen = false;
 $("#vsSymbol").hide();
 $("#attackBtn").hide();
 
@@ -12,11 +14,11 @@ $("#attackBtn").hide();
 	// 	interval: 1
 	// },
 
-// 	LemonGrab = {
-// 		healthPoints: 230
-// 		attackPoints: 10
-// 		interval: 1
-// 	},
+	// LemonGrab = {
+	// 	healthPoints: 230
+	// 	attackPoints: 10
+	// 	interval: 1
+	// },
 
 // 	theIceKing = {
 // 		healthPoints: 250
@@ -30,64 +32,60 @@ $("#attackBtn").hide();
 // 		interval: 1
 // 	}]
 
-// var gamePlay = {
-
-// 	selectedByPlayer: function () {
-// 		isPlayer = true
-// 		interval = attackPoints + attackPoints
-// 		//display in playerLocation
-// 	}
-
-// 	attackMode: function () {
-
-// 	}
-
-// 	opponentOfPlayer: function () {
-// 		//display in enemyLocation
-// 		counterAttack = attackPoints
-
-// 	}
-// }
-
-// //Character Creation
-// 	//
-
-// //Game Start
-// $("gameStartHandler").on("click", function () {
-
-// 	//Character moves to playerLocation.
-// 	if (finn == isPlayer) {
-// 		$(".finn").appendTo("#playerLocation");
-// 	} else if (theIceKing == isPlayer) {
-// 		$(".theIceKing").appendTo("#playerLocation");
-// 	} else if (LSP == isPlayer) {
-// 		$(".LSP").appendTo("#playerLocation");
-// 	} else if (LemonGrab == isPlayer) {
-// 		$(".LemonGrab").appendTo("#playerLocation");
-// 	};
-// 	//Enemies move to enemyLocation.
-// 	// $(!isPlayer).innerHTML("")
-// 	// Vs symbol appears in vsLocation.
 
 
-// 	//Attack button becomes functional.
-// })
-//isPlayerSelector
-if (hasPlayerBeenChosen == 0) {
-	$(".characterOption").on("click", function () {	
-		//Click to select player character.
-		// var chosenCharacter = $(this).addClass("isPlayer");
-		hasPlayerBeenChosen = 1;
-		$("#vsSymbol").fadeIn(500);
-		$("#attackBtn").show();
-	})
-}
-//combatantSelector on click function () {
-if (hasPlayerBeenChosen == 1) {
-	$(".characterOption").on("click", function () {	
-		var chosenEnemy = $(this).addClass("isUnderAttack");
-	})
-}
+
+//This block of code is working
+	$(".charBtn").on("click", function () {	//This whole block of code is working.
+
+		if (hasPlayerBeenChosen === false) {
+			
+			$(this).addClass("isPlayer");
+			
+			hasPlayerBeenChosen = true;
+
+			$(this).appendTo("#playerLocation");
+
+			// $(".starthealthPoints").hide(this);
+
+			$("h1").html("Select your opponent!");		
+		
+		} else if (hasPlayerBeenChosen === true) {
+			
+			
+			$(this).addClass("isUnderAttack");
+
+			$(this).appendTo("#enemyLocation");
+
+			$("#vsSymbol").fadeIn(500);
+			
+			$("#attackBtn").show();
+
+			hasEnemyBeenChosen = true;
+		
+		}
+	});
+//This block of code is working.
+
+		// if (hasEnemyBeenChosen === true) {
+			
+		// 	if (enemyHealth > 0) {
+		// 		return;
+		// 	} else {
+
+		// 	}
+		// }
+	
+
+	
+
+
+
+			
+		// 	})
+		// 	}};
+	// 	}
+	// });
 	//The enemy character is labelled as current enemy.
 // }
 
@@ -98,12 +96,12 @@ if (hasPlayerBeenChosen == 1) {
 //combatMechanicsHandler
 // 	//The player will now be able to click the attack button.
 // $("#attackBtn").on("click", function () {
-// 		// function buildinterval {
-// 		// 	attackPower = interval++;
-// 		// }
-// 		// function attackPointsTotal {
-// 		// 	attackPoints = attackPoints * attackPower;
-// 		// }
+		// function buildinterval {
+		// 	attackPower = interval++;
+		// }
+		// function attackPointsTotal {
+		// 	attackPoints = attackPoints * attackPower;
+		// }
 // 	// Whenever the player clicks attack, their character damages the defender. 
 // 	// The opponent will lose HP (health points). 
 // 	// The opponent character will instantly counter the attack.

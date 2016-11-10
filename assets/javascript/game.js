@@ -11,7 +11,9 @@ $("#vsSymbol").hide();
 //disables attack and reset buttons.
 $("#attackBtn").hide();
 $("#clearBtn").hide();
+
 // var playerChoices {
+
 //  [finn = {
 	// 	healthPoints: 200
 	// 	attackPoints: 8
@@ -52,9 +54,20 @@ $("#clearBtn").hide();
 			$(this).appendTo("#playerLocation");
 			// $(".starthealthPoints").hide(this);
 			//Text on page changes play instructions.
-			$("h1").html("Select your opponent!");		
+			$("h1").html("Select your opponent!");	
+		//I MUST CHANGE THISSSSS...... 
+			//The character can be clicked on and moved to 
+			//The enemy section, but cannot be replaced.
+
 	//If a character has already been selected
-		} else if (hasPlayerBeenChosen === true) {
+		} else if ((hasPlayerBeenChosen === true) 
+		  && ($(this).hasClass("isUnderAttack"))) {
+
+				$(this).appendTo("#characterSelectPanel");
+
+				$(this).removeClass("isUnderAttack");
+
+		} else if (hasEnemyBeenChosen === false) {
 			//Selection becomes player's opponent
 			$(this).addClass("isUnderAttack");
 			//Opponent moves to new area of the screen
@@ -66,25 +79,11 @@ $("#clearBtn").hide();
 			$("#clearBtn").show();
 			//Blocks multiple enemies from being selected. NEEDS WORK
 			hasEnemyBeenChosen = true;
+		//I MUST CHANGE THISSSSS.......
+			//Once a character has been replaced to panel, 
+			//it cannot be selected again.
 		}
 	});
-var currentEnemy = $(".charBtn").hasClass("isUnderAttack");
-
-	$("#clearBtn").on("click", function () {
-
-		if (currentEnemy) {
-
-			$(currentEnemy).appendTo("#characterSelectPanel");
-
-		}
-		
-		$("#charBtn").removeClass("isUnderAttack");
-		
-		hasEnemyBeenChosen = false;	
-		
-	})
-
-	//The enemy character is labelled as current enemy.
 
 //Stats
 	//HP displayed at the bottom of the defender's picture.

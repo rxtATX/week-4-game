@@ -10,8 +10,8 @@ var hasEnemyBeenChosen = false;
 $("#vsSymbol").hide();
 //disables attack and reset buttons.
 $("#attackBtn").hide();
-$("#clearBtn").hide();
-
+$("#boom").hide();
+$("#pow").hide();
 // var playerChoices {
 
 //  [finn = {
@@ -80,7 +80,6 @@ $("#clearBtn").hide();
 			$("#vsSymbol").fadeIn(500);
 			//The attack and clear buttons become available.
 			$("#attackBtn").show();
-			$("#clearBtn").show();
 			//Blocks multiple enemies from being selected.
 			hasEnemyBeenChosen = true;
 		}

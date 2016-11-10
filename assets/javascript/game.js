@@ -58,6 +58,8 @@ $("#clearBtn").hide();
 		//I MUST CHANGE THISSSSS...... 
 			//The character can be clicked on and moved to 
 			//The enemy section, but cannot be replaced.
+			$(this).removeAttr(".charBtn");
+		
 
 	//If a character has already been selected
 		} else if ((hasPlayerBeenChosen === true) 
@@ -66,6 +68,8 @@ $("#clearBtn").hide();
 				$(this).appendTo("#characterSelectPanel");
 
 				$(this).removeClass("isUnderAttack");
+
+				hasEnemyBeenChosen = false;
 
 		} else if (hasEnemyBeenChosen === false) {
 			//Selection becomes player's opponent
@@ -77,11 +81,8 @@ $("#clearBtn").hide();
 			//The attack and clear buttons become available.
 			$("#attackBtn").show();
 			$("#clearBtn").show();
-			//Blocks multiple enemies from being selected. NEEDS WORK
+			//Blocks multiple enemies from being selected.
 			hasEnemyBeenChosen = true;
-		//I MUST CHANGE THISSSSS.......
-			//Once a character has been replaced to panel, 
-			//it cannot be selected again.
 		}
 	});
 

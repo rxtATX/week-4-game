@@ -1,12 +1,16 @@
 
 $(document).ready(function() {
-
+//Displays initial gameplay instructions
 $("h1").html("Select your character!");
+//Allows character to be chosen
 var hasPlayerBeenChosen = false;
+//Defines no enemy yet
 var hasEnemyBeenChosen = false;
+//prevents vs token from showing
 $("#vsSymbol").hide();
+//disables attack and reset buttons.
 $("#attackBtn").hide();
-
+$("#clearBtn").hide();
 // var playerChoices {
 //  [finn = {
 	// 	healthPoints: 200
@@ -36,58 +40,51 @@ $("#attackBtn").hide();
 
 
 //This block of code is working
-	$(".charBtn").on("click", function () {	//This whole block of code is working.
-
+//When an image of the characters is clicked on:
+	$(".charBtn").on("click", function () {
+	//If no character was clicked on before it:
 		if (hasPlayerBeenChosen === false) {
-			
+			//Selection becomes the player's character
 			$(this).addClass("isPlayer");
-			
+			//Blocks multiple characters from being selected
 			hasPlayerBeenChosen = true;
-
+			//Moves the image of the player into new area
 			$(this).appendTo("#playerLocation");
-
 			// $(".starthealthPoints").hide(this);
-
+			//Text on page changes play instructions.
 			$("h1").html("Select your opponent!");		
-		
+	//If a character has already been selected
 		} else if (hasPlayerBeenChosen === true) {
-			
-			
+			//Selection becomes player's opponent
 			$(this).addClass("isUnderAttack");
-
+			//Opponent moves to new area of the screen
 			$(this).appendTo("#enemyLocation");
-
+			//The vs token appears
 			$("#vsSymbol").fadeIn(500);
-			
+			//The attack and clear buttons become available.
 			$("#attackBtn").show();
-
+			$("#clearBtn").show();
+			//Blocks multiple enemies from being selected. NEEDS WORK
 			hasEnemyBeenChosen = true;
-		
 		}
 	});
-//This block of code is working.
+var currentEnemy = $(".charBtn").hasClass("isUnderAttack");
 
-		// if (hasEnemyBeenChosen === true) {
-			
-		// 	if (enemyHealth > 0) {
-		// 		return;
-		// 	} else {
+	$("#clearBtn").on("click", function () {
 
-		// 	}
-		// }
-	
+		if (currentEnemy) {
 
-	
+			$(currentEnemy).appendTo("#characterSelectPanel");
 
+		}
+		
+		$("#charBtn").removeClass("isUnderAttack");
+		
+		hasEnemyBeenChosen = false;	
+		
+	})
 
-
-			
-		// 	})
-		// 	}};
-	// 	}
-	// });
 	//The enemy character is labelled as current enemy.
-// }
 
 //Stats
 	//HP displayed at the bottom of the defender's picture.

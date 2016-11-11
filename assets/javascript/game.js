@@ -10,7 +10,67 @@ var hasEnemyBeenChosen = false;
 $("#vsSymbol").hide();
 //disables attack
 $("#attackBtn").hide();
+var enemiesLeft = 3;
 
+function playerAttack() {
+	//redefines the enemy's health based on player's attack points.
+	$(".isUnderAttack").healthPoints = $(".isUnderAttack").healthPoints - $(".isPlayer").attackPoints;
+	//adjusts the number which will alter the player attackPoints
+	$(".isPlayer").interval = $(".isPlayer").interval++;
+	//adjusts the player's attackPoints
+	$("is.Player").attackPoints = $("isPlayer").attackPoints * $(".isPlayer").interval;
+
+	if (($("#isUnderAttack").healthPoints <= 0) && (enemiesLeft > 0)) {
+		//initialize next enemy
+		enemiesLeft--;
+
+		$("#isUnderAttack").appendTo("#characterSelectPanel");
+		$("#isUnderAttack").off("click");
+		$("#isUnderAttack").removeClass("isUnderAttack");
+
+		// if (enemiesLeft === 0) {
+			// 	($".container-fluid").html("<h1>You beat those guys!</h1>");
+     		//initialize game winner
+	}
+ 
+
+	//Sets enemy's attack parameters
+	if ((enemiesLeft > 0) && ($(".isUnderAttack").health > 0)) {
+		setTimeout(counterAttack, 1000);
+
+			//initialize game over
+	}
+}
+
+
+function counterAttack() {
+//redefines the player's health after enemy attack.
+$("isPlayer").healthPoints = $("isPlayer").healthPoints - $("isUnderAttack").attackPoints;
+
+if ($("#isPlayer").healthPoints <= 0) {
+	//initialize game over
+}
+
+var Finn =  {healthPoints: 200,
+			attackPoints: 8,
+			interval: 1,
+            id: $("finn")
+			};
+var theIceKing =  {healthPoints: 200,
+			attackPoints: 8,
+			interval: 1,
+            id: $("theIceKing")
+			};
+var LSP =  {healthPoints: 200,
+			attackPoints: 8,
+			interval: 1,
+            id: $("LSP")
+			};
+var LemonGrab =  {healthPoints: 200,
+			attackPoints: 8,
+			interval: 1,
+            id : $("LemonGrab")
+			};
 //This block of code is working
 //When an image of the characters is clicked on:
 	$(".charBtn").on("click", function () {
@@ -25,7 +85,6 @@ $("#attackBtn").hide();
 			// $(".starthealthPoints").hide(this);
 			//Text on page changes play instructions.
 			$("h1").html("Select your opponent!");	
-		//I MUST CHANGE THISSSSS...... 
 			//The character can be clicked on and moved to 
 			//The enemy section, but cannot be replaced.
 			$(this).removeClass("enemyOption");
@@ -61,16 +120,13 @@ $("#attackBtn").hide();
 			hasEnemyBeenChosen = true;
 		}
 	});
+	//Sets player's attack parameters
 
+	//Click function for attack button
 	$("#attackBtn").on("click", function () {
-			//Combat
-		$(".isPlayer").find()	
-		// function buildinterval {
-		// attackPower = interval++;
-		// }
-		// function attackPointsTotal {
-		// attackPoints = attackPoints * attackPower;
-		// }
+		//calls player attack
+		playerAttack();
+
 	});
 
 //Stats

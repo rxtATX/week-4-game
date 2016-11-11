@@ -12,33 +12,29 @@
 	<header><img src = "assets/images/adventureBanner.png"></header>
 </head>
 <body background = "assets/images/landofoooBig.jpg" class = "container-fluid">
-	<div id = "characterSelectPanel"> <!-- Replace this after character selected -->
+	<div id = "characterSelectPanel">
 		<div class = "row center">
 			<h1 class = "col-sm-12 text-center"></h1>
 		</div>
-		<button class = "charBtn hvr-pulse-grow"><img class = "characterOption enemyOption" id = "finn" alt = "Finn the Human" src = "assets/images/Finn.png"></button>
-				<!-- <div class = "starthealthPoints">Health: 200</div> -->
-
-		<button class = "charBtn hvr-pulse-grow"><img class = "characterOption enemyOption" id = "theIceKing" alt = "The Ice King" src = "assets/images/Ice_King.png"></button>
-				<!-- <div class = "starthealthPoints">Health: 250</div> -->
-
-		<button class = "charBtn hvr-pulse-grow"><img class = "characterOption enemyOption" id = "LSP" alt = "Lumpy Space Princess" src = "assets/images/Lumpy_Space.png"></button>
-				<!-- <div class = "starthealthPoints">Health: 150</div> -->
-
-		<button class = "charBtn hvr-pulse-grow"><img class = "characterOption enemyOption" id = "LemonGrab" alt = "Earl of Lemon Grab" src = "assets/images/LemonGrab.png"></button>
-				<!-- <div class = "starthealthPoints">Health: 280</div> -->
+		
+		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "finn" alt = "Finn the Human" src = "assets/images/Finn.png"></button>
+		<!-- <p class = "hvr-hang">Health Points: 200</p> -->
+		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "theIceKing" alt = "The Ice King" src = "assets/images/Ice_King.png"></button>
+		<!-- <p class = "hvr-hang">Health Points: 250</p> -->
+		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "LSP" alt = "Lumpy Space Princess" src = "assets/images/Lumpy_Space.png"></button>
+		<!-- <p class = "hvr-hang">Health Points: 150</p> -->
+		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "LemonGrab" alt = "Earl of Lemon Grab" src = "assets/images/LemonGrab.png"></button>
+		<!-- <p class = "hvr-hang">Health Points: 230</p> -->
 	</div>
 	<container class = "row">
 		<div id = "playerLocation" class = "col-sm-5">
 		</div>
-		<div id = "boom"><img src = "assets/images/boom (2).png"></div>
 		<div class = "col-sm-2"><img id = "vsSymbol" src = "assets/images/vs.png">
 			<div class = "row">
 				<button type="button" id = "attackBtn" class="btn btn-danger pagination-centered">Attack!</button>
 			</div>
 		</div>
 		<div id = "enemyLocation" class = "col-sm-5"></div>
-		<div id = "pow"><img src = "assets/images/pow (2).png"></div>
 	</container>
 </body>
 </html>

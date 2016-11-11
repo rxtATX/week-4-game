@@ -8,38 +8,8 @@ var hasPlayerBeenChosen = false;
 var hasEnemyBeenChosen = false;
 //prevents vs token from showing
 $("#vsSymbol").hide();
-//disables attack and reset buttons.
+//disables attack
 $("#attackBtn").hide();
-$("#boom").hide();
-$("#pow").hide();
-// var playerChoices {
-
-//  [finn = {
-	// 	healthPoints: 200
-	// 	attackPoints: 8
-	// 	interval: 1
-	// },
-
-	// LemonGrab = {
-	// 	healthPoints: 230
-	// 	attackPoints: 10
-	// 	interval: 1
-	// },
-
-// 	theIceKing = {
-// 		healthPoints: 250
-// 		attackPoints: 12// 		
-// 		interval: 1
-// 	},
-
-// 	LSP = {
-// 		healthPoints: 150
-// 		attackPoints: 16
-// 		interval: 1
-// 	}]
-
-
-
 
 //This block of code is working
 //When an image of the characters is clicked on:
@@ -58,8 +28,14 @@ $("#pow").hide();
 		//I MUST CHANGE THISSSSS...... 
 			//The character can be clicked on and moved to 
 			//The enemy section, but cannot be replaced.
-			$(this).removeAttr(".charBtn");
-		
+			$(this).removeClass("enemyOption");
+			$(this).removeClass("characterOption");
+
+			if ($(this).hasClass("isPlayer")) {
+
+				$(this).removeClass("charBtn");
+				$(this).off("click");
+			}
 
 	//If a character has already been selected
 		} else if ((hasPlayerBeenChosen === true) 
@@ -71,7 +47,8 @@ $("#pow").hide();
 
 				hasEnemyBeenChosen = false;
 
-		} else if (hasEnemyBeenChosen === false) {
+		} else if ((hasEnemyBeenChosen === false)
+		  && (hasPlayerBeenChosen === true)) {
 			//Selection becomes player's opponent
 			$(this).addClass("isUnderAttack");
 			//Opponent moves to new area of the screen
@@ -85,19 +62,21 @@ $("#pow").hide();
 		}
 	});
 
+	$("#attackBtn").on("click", function () {
+			//Combat
+		$(".isPlayer").find()	
+		// function buildinterval {
+		// attackPower = interval++;
+		// }
+		// function attackPointsTotal {
+		// attackPoints = attackPoints * attackPower;
+		// }
+	});
+
 //Stats
 	//HP displayed at the bottom of the defender's picture.
 	//HP at the bottom of the player character's picture.
 
-//combatMechanicsHandler
-// 	//The player will now be able to click the attack button.
-// $("#attackBtn").on("click", function () {
-		// function buildinterval {
-		// 	attackPower = interval++;
-		// }
-		// function attackPointsTotal {
-		// 	attackPoints = attackPoints * attackPower;
-		// }
 // 	// Whenever the player clicks attack, their character damages the defender. 
 // 	// The opponent will lose HP (health points). 
 // 	// The opponent character will instantly counter the attack.

@@ -9,13 +9,12 @@
 	padding-bottom: 40px;
 	background-color: rgba(183, 249, 255, 0.5);
 	margin: auto;
-
 }
 #playerLocation {
 	padding-left: 250px;
 }
 .charBtn {
-	margin-left: 60px;
+	margin-left: 60px;	
 }
 header {
 	margin-top: 15px;
@@ -24,8 +23,4 @@ header {
 .btn-danger, .btn-primary {
 	margin-left: 45px;
 	margin-top: 10px;
-}
-#boom {
-	height: 100px;
-	width: 100px;
 }

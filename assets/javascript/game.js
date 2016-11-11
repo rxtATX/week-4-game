@@ -27,13 +27,13 @@ function playerAttack() {
 
 	// $("")
 
-	if (($("#isUnderAttack").healthPoints <= 0) && (enemiesLeft > 0)) {
+	if (($(".isUnderAttack").healthPoints <= 0) && (enemiesLeft > 0)) {
 		//initialize next enemy
 		enemiesLeft--;
 
-		$("#isUnderAttack").appendTo("#characterSelectPanel");
-		$("#isUnderAttack").off("click");
-		$("#isUnderAttack").removeClass("isUnderAttack");
+		$(".isUnderAttack").appendTo("#characterSelectPanel");
+		$(".isUnderAttack").off("click");
+		$(".isUnderAttack").removeClass("isUnderAttack");
 
 		if (enemiesLeft === 0) {
 			
@@ -83,14 +83,14 @@ function gameOver() {
 
 function counterAttack() {
 //redefines the player's health after enemy attack.
-$("isPlayer").healthPoints = $("isPlayer").healthPoints - $("isUnderAttack").attackPoints;
+$(".isPlayer").healthPoints = $(".isPlayer").healthPoints - $(".isUnderAttack").attackPoints;
 
 // $("#playerLocation").html("<img src = 'assets/images/pow (2).png'>");
 
 // $("#playerLocation").html(".isPlayer").delay(1000);
 	/*this will run after the game has checked whether an enemy has been defeated, 
 	so the player can kill an enemy if the counter attack would have killed them. */
-	if ($("#isPlayer").healthPoints <= 0) {
+	if ($(".isPlayer").healthPoints <= 0) {
 		
 		gameOver();
 	} //end if statement

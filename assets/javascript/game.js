@@ -11,6 +11,11 @@ $("#vsSymbol").hide();
 //disables attack
 $("#attackBtn").hide();
 var enemiesLeft = 3;
+// $("#finnHealth").html(Finn.healthPoints);
+// $("#theIKHealth").html(theIceKing.healthPoints);
+// $("LSPHealth").html(LSP.healthPoints);
+// $("#LGHealth").html(LemonGrab.healthPoints);
+
 
 function playerAttack() {
 	//redefines the enemy's health based on player's attack points.
@@ -30,21 +35,51 @@ function playerAttack() {
 		$("#isUnderAttack").off("click");
 		$("#isUnderAttack").removeClass("isUnderAttack");
 
-		// if (enemiesLeft === 0) {
-			// 	($".container-fluid").html("<h1>You beat those guys!</h1>");
-     		//initialize game winner
-	}
- 
-
+		if (enemiesLeft === 0) {
+			
+			gameWon();
+		} //end internal if
+ 	
+	}	//end if
 	//Sets enemy's attack parameters
 	if ((enemiesLeft > 0) && ($(".isUnderAttack").health > 0)) {
 		
 		setTimeout(counterAttack, 1000);
 
-			//initialize game over
-	}
-}
+	}//end if
+} // end playerAttack
 
+function gameWon() {
+
+	alert("Mathematical!");
+
+	$("h1").html("Select your character!");
+	//Allows character to be chosen
+	var hasPlayerBeenChosen = false;
+	//Defines no enemy yet
+	var hasEnemyBeenChosen = false;
+	//prevents vs token from showing
+	$("#vsSymbol").hide();
+	//disables attack
+	$("#attackBtn").hide();
+	var enemiesLeft = 3;
+} //end gameWon
+
+function gameOver() {
+
+	alert("Game over!");
+
+	$("h1").html("Select your character!");
+	//Allows character to be chosen
+	var hasPlayerBeenChosen = false;
+	//Defines no enemy yet
+	var hasEnemyBeenChosen = false;
+	//prevents vs token from showing
+	$("#vsSymbol").hide();
+	//disables attack
+	$("#attackBtn").hide();
+	var enemiesLeft = 3;
+} //end gameOver
 
 function counterAttack() {
 //redefines the player's health after enemy attack.
@@ -53,11 +88,13 @@ $("isPlayer").healthPoints = $("isPlayer").healthPoints - $("isUnderAttack").att
 // $("#playerLocation").html("<img src = 'assets/images/pow (2).png'>");
 
 // $("#playerLocation").html(".isPlayer").delay(1000);
-
+	/*this will run after the game has checked whether an enemy has been defeated, 
+	so the player can kill an enemy if the counter attack would have killed them. */
 	if ($("#isPlayer").healthPoints <= 0) {
-		//initialize game over
-	}
-}
+		
+		gameOver();
+	} //end if statement
+} //end counterAttack
 
 var Finn =  {healthPoints: 200,
 			attackPoints: 8,
@@ -102,10 +139,10 @@ var LemonGrab =  {healthPoints: 200,
 
 				$(this).removeClass("charBtn");
 				$(this).off("click");
-			}
+			} //ends internal if statment
 
 	//If a character has already been selected
-		} else if ((hasPlayerBeenChosen === true) 
+		} else if ((hasPlayerBeenChosen === true) //this } ends player selection
 		  && ($(this).hasClass("isUnderAttack"))) {
 
 				$(this).appendTo("#characterSelectPanel");
@@ -114,7 +151,7 @@ var LemonGrab =  {healthPoints: 200,
 
 				hasEnemyBeenChosen = false;
 
-		} else if ((hasEnemyBeenChosen === false)
+		} else if ((hasEnemyBeenChosen === false) // this } ends if character has already been selected
 		  && (hasPlayerBeenChosen === true)) {
 			//Selection becomes player's opponent
 			$(this).addClass("isUnderAttack");
@@ -126,8 +163,8 @@ var LemonGrab =  {healthPoints: 200,
 			$("#attackBtn").show();
 			//Blocks multiple enemies from being selected.
 			hasEnemyBeenChosen = true;
-		}
-	});
+		} //ends enemy select statement
+	}); //end click functions
 	//Sets player's attack parameters
 
 	//Click function for attack button
@@ -135,8 +172,8 @@ var LemonGrab =  {healthPoints: 200,
 		//calls player attack
 		playerAttack();
 
-	});
-})
+	}); //ends attack
+});
 //Stats
 	//HP displayed at the bottom of the defender's picture.
 	//HP at the bottom of the player character's picture.
@@ -157,7 +194,7 @@ var LemonGrab =  {healthPoints: 200,
 	//playerDeathHandler
 		//The player loses the game the game if their character's HP falls to zero or below.
 	//Display gameOver
-	// hasPlayerBeenChosen = 0;
+	// hasPlayerBeenChosen = false;
 	// //reset photo locations
 	// $("#vsLocation").hide();
 	//hide character stats

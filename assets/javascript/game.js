@@ -20,6 +20,8 @@ function playerAttack() {
 	//adjusts the player's attackPoints
 	$("is.Player").attackPoints = $("isPlayer").attackPoints * $(".isPlayer").interval;
 
+	// $("")
+
 	if (($("#isUnderAttack").healthPoints <= 0) && (enemiesLeft > 0)) {
 		//initialize next enemy
 		enemiesLeft--;
@@ -36,6 +38,7 @@ function playerAttack() {
 
 	//Sets enemy's attack parameters
 	if ((enemiesLeft > 0) && ($(".isUnderAttack").health > 0)) {
+		
 		setTimeout(counterAttack, 1000);
 
 			//initialize game over
@@ -47,8 +50,13 @@ function counterAttack() {
 //redefines the player's health after enemy attack.
 $("isPlayer").healthPoints = $("isPlayer").healthPoints - $("isUnderAttack").attackPoints;
 
-if ($("#isPlayer").healthPoints <= 0) {
-	//initialize game over
+// $("#playerLocation").html("<img src = 'assets/images/pow (2).png'>");
+
+// $("#playerLocation").html(".isPlayer").delay(1000);
+
+	if ($("#isPlayer").healthPoints <= 0) {
+		//initialize game over
+	}
 }
 
 var Finn =  {healthPoints: 200,
@@ -128,7 +136,7 @@ var LemonGrab =  {healthPoints: 200,
 		playerAttack();
 
 	});
-
+})
 //Stats
 	//HP displayed at the bottom of the defender's picture.
 	//HP at the bottom of the player character's picture.
@@ -154,7 +162,3 @@ var LemonGrab =  {healthPoints: 200,
 	// $("#vsLocation").hide();
 	//hide character stats
 	//reset character stats
-
-
-
-});

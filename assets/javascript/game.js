@@ -24,8 +24,10 @@ function playerAttack() {
 	$(".isPlayer").interval = $(".isPlayer").interval++;
 	//adjusts the player's attackPoints
 	$("is.Player").attackPoints = $("isPlayer").attackPoints * $(".isPlayer").interval;
+	
+// $("#enemyLocation").html("<img src = 'assets/images/boom (2).png'>");
 
-	// $("")
+// $("#enemyLocation").html(".isUnderAttack").delay(1000);
 
 	if (($(".isUnderAttack").healthPoints <= 0) && (enemiesLeft > 0)) {
 		//initialize next enemy

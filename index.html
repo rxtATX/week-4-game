@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,21 +18,44 @@
 		<div class = "row center">
 			<h1 class = "col-sm-12 text-center"></h1>
 		</div>
-		
-		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "finn" alt = "Finn the Human" src = "assets/images/Finn.png"></button>
-		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "theIceKing" alt = "The Ice King" src = "assets/images/Ice_King.png"></button>
-		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "LSP" alt = "Lumpy Space Princess" src = "assets/images/Lumpy_Space.png"></button>
-		<button class = "charBtn hvr-pulse-grow characterOption enemyOption"><img id = "LemonGrab" alt = "Earl of Lemon Grab" src = "assets/images/LemonGrab.png"></button>	
-	</div>
-	<container class = "row">
-		<div id = "playerLocation" class = "col-sm-5">
+		<div data-healthPoints = "120" data-enemyAttackBack = "15" data-attackPoints = "8" class = "charBtn hvr-pulse-grow characterOption enemyOption">
+			<div id="healthPoints" class = "text-center healths">HP: 200</div>
+			<img id = "finn" alt = "Finn the Human" src = "assets/images/Finn.png">
 		</div>
-		<div class = "col-sm-2"><img id = "vsSymbol" src = "assets/images/vs.png">
-			<div class = "row">
-				<button type="button" id = "attackBtn" class="btn btn-danger pagination-centered">Attack!</button>
+		<div data-healthPoints = "150" data-enemyAttackBack = "20" data-attackPoints = "8" class = "charBtn hvr-pulse-grow characterOption enemyOption">
+			<div id="healthPoints" class = "text-center healths">HP: 250</div>
+			<img id = "theIceKing" alt = "The Ice King" src = "assets/images/Ice_King.png">
+		</div>
+		<div data-healthPoints = "100" data-enemyAttackBack = "5" data-attackPoints = "14" class = "charBtn hvr-pulse-grow characterOption enemyOption">
+			<div id="healthPoints" class = "text-center healths">HP: 180</div>
+			<img id = "LSP" alt = "Lumpy Space Princess" src = "assets/images/Lumpy_Space.png">
+		</div>
+		<div data-healthPoints = "180" data-enemyAttackBack = "25" data-attackPoints = "7" class = "charBtn hvr-pulse-grow characterOption enemyOption">
+			<div id="healthPoints" class = "text-center healths">HP: 280</div>
+			<img id = "LemonGrab" alt = "Earl of Lemon Grab" src = "assets/images/LemonGrab.png">
+		</div>	
+	</div>
+	<div id = battleArena class = "col-sm-12">
+		<div class="col-sm-1">&nbsp;</div>
+		<div class="col-sm-4">
+			<div class="col-sm-4">
+				<div id = "playerLocation" class = "col-sm-12"></div>
 			</div>
 		</div>
-		<div id = "enemyLocation" class = "col-sm-5"></div>
-	</container>
+		<div class="col-sm-2">
+			<div id = "vsHolder" class = "col-sm-12">
+				<img id = "vsSymbol" src = "assets/images/vs.png">
+			</div>
+			<div class = "col-sm-12">	
+				<button type="button" id = "attackBtn" class="btn btn-danger">Attack!</button>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div id = "enemyLocation" class = "col-sm-12">
+			</div>
+		</div>
+		<div class="col-sm-1">&nbsp;</div>
+	</div>
+	
 </body>
 </html>

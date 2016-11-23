@@ -4,23 +4,46 @@
 #characterSelectPanel {
 	border: inset;
 	border-color: steelblue;
-	padding-left: 10%;
-	padding-right: 10%;
-	padding-bottom: 40px;
 	background-color: rgba(183, 249, 255, 0.5);
 	margin: auto;
-}
-#playerLocation {
-	padding-left: 250px;
+	padding-bottom: 4%;
+	padding-right: 8%;
 }
 .charBtn {
-	margin-left: 60px;	
+	margin: auto;
+    width: 25%;
+    height: 6%;
 }
 header {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-.btn-danger, .btn-primary {
-	margin-left: 45px;
+.btn-danger {
 	margin-top: 10px;
+	padding-left: 3%;
+	margin-left: 20%;
+}
+#vsHolder {
+ text-align: center; 
+ margin: 1em 0;
+ padding-right: 500px;
+}
+#vsSymbol {
+    display: inline-block;
+    height: 100%;	
+}
+div>img {
+	margin: auto;
+	padding-left: 35%;
+}
+.healths {
+	margin-left: 50%;
+	width: 100px;
+	height: 30px;
+	border: inset;
+	border-color: steelblue;
+	background-color: rgba(183, 249, 255, 0.5);
+}
+#playerLocation {
+	margin-left: 150%;
 }

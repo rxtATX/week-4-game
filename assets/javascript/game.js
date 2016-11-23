@@ -1,203 +1,148 @@
-
 $(document).ready(function() {
-//Displays initial gameplay instructions
-$("h1").html("Select your character!");
-//Allows character to be chosen
-var hasPlayerBeenChosen = false;
-//Defines no enemy yet
-var hasEnemyBeenChosen = false;
-//prevents vs token from showing
-$("#vsSymbol").hide();
-//disables attack
-$("#attackBtn").hide();
+	gameInit();
+});
+
+//Global Variables
 var enemiesLeft = 3;
-// $("#finnHealth").html(Finn.healthPoints);
-// $("#theIKHealth").html(theIceKing.healthPoints);
-// $("LSPHealth").html(LSP.healthPoints);
-// $("#LGHealth").html(LemonGrab.healthPoints);
-
-
-function playerAttack() {
-	//redefines the enemy's health based on player's attack points.
-	$(".isUnderAttack").healthPoints = $(".isUnderAttack").healthPoints - $(".isPlayer").attackPoints;
-	//adjusts the number which will alter the player attackPoints
-	$(".isPlayer").interval = $(".isPlayer").interval++;
-	//adjusts the player's attackPoints
-	$("is.Player").attackPoints = $("isPlayer").attackPoints * $(".isPlayer").interval;
+var hasPlayerBeenChosen = false;
+var hasEnemyBeenChosen = false;
+var playerAttackPoints, enemyAttack;
+var playerHealth, enemyHealth; 
+var playerOriginalValue;
 	
-// $("#enemyLocation").html("<img src = 'assets/images/boom (2).png'>");
+//Start Page Conditions
+function gameInit(){
+	setupNewGame();
 
-// $("#enemyLocation").html(".isUnderAttack").delay(1000);
+	$("#attackBtn").on('click', AttackClickHandler);
+	$(".charBtn").on('click', CharacterSelectionHandler);
+}
 
-	if (($(".isUnderAttack").healthPoints <= 0) && (enemiesLeft > 0)) {
-		//initialize next enemy
-		enemiesLeft--;
+//Define New Game Page stats
+function setupNewGame() {
+	$("h1").html("Select your character!");
+	$(".charBtn").appendTo("#characterSelectPanel")
+	
+	$("#vsSymbol").hide();
+	$("#attackBtn").hide();
 
+	enemiesLeft = 3;
+	hasPlayerBeenChosen = false;
+	hasEnemyBeenChosen = false;
+	playerAttackPoints = playerOriginalValue;
+}
+
+//Character selection and posiitoning, including char stats
+function CharacterSelectionHandler() {
+	if (hasPlayerBeenChosen === false) {
+		hasPlayerBeenChosen = true;
+		$("h1").html("Select your opponent!");	
+		
+		$(this).addClass("isPlayer");
+		$(this).appendTo("#playerLocation");
+
+		playerAttackPoints = playerOriginalValue = parseInt($(this).attr("data-attackPoints"));
+		playerHealth = parseInt($(this).attr("data-healthPoints"));
+		//Player cannot change Hero character once selected
+		if (hasPlayerBeenChosen) {
+			$(this).off("click");
+		}
+	} else if ((hasEnemyBeenChosen === false) && (hasPlayerBeenChosen === true)) {
+		hasEnemyBeenChosen = true;
+
+		$(this).addClass("isUnderAttack");
+		$(this).appendTo("#enemyLocation");
+		enemyAttack = parseInt($(this).attr("data-enemyAttackBack"));
+		enemyHealth = parseInt($(this).attr("data-healthPoints"));
+		
+		$("#vsSymbol").fadeIn(500);
+		$("#attackBtn").show();
+	} else if ((hasPlayerBeenChosen === true) && ($(this).hasClass("isUnderAttack"))) {
+		//Player can change enemy character at any time.
+		$(this).appendTo("#characterSelectPanel");
+		$(this).removeClass("isUnderAttack");
+		hasEnemyBeenChosen = false;
+	}
+}
+
+function AttackClickHandler() {
+	if (hasEnemyBeenChosen) {
+		playerAttack();
+	}
+	// } else if ((enemies left === 0) || (playerHealth === 0)) {
+	// gameReload();
+};
+
+//Fighting Mechanics
+function playerAttack() {
+	$('#enemyLocation').find('div[id=healthPoints]').html("HP: " + enemyHealth);
+	enemyHealth = enemyHealth - playerAttackPoints;
+	enemyHealth = enemyHealth < 0 ? 0 : enemyHealth;
+	playerAttackPoints = playerAttackPoints + playerOriginalValue;
+	if (enemyHealth <= 0) {
+		$('#enemyLocation').find('div[id=healthPoints]').html("HP: 0");
+	}
+	if ((enemyHealth <= 0) && (enemiesLeft > 0)) {
+		hasEnemyBeenChosen = false;
 		$(".isUnderAttack").appendTo("#characterSelectPanel");
 		$(".isUnderAttack").off("click");
 		$(".isUnderAttack").removeClass("isUnderAttack");
-
-		if (enemiesLeft === 0) {
-			
-			gameWon();
-		} //end internal if
- 	
-	}	//end if
-	//Sets enemy's attack parameters
-	if ((enemiesLeft > 0) && ($(".isUnderAttack").health > 0)) {
+		enemiesLeft--;
 		
-		setTimeout(counterAttack, 1000);
+		if (enemiesLeft === 0) {
+			gameWon();
+			// $("attackBtn").html("Play again?");
+			// $("#vsSymbol").hide();
+		}
+	}
+	if ((enemiesLeft > 0) && (enemyHealth > 0)) {
+		counterAttack();
+	}
+}
 
-	}//end if
-} // end playerAttack
+//Enemy fighting mechanics
+function counterAttack() {
+	$('#playerLocation').find('div[id=healthPoints]').html("HP: " + playerHealth)
+	playerHealth = playerHealth - enemyAttack;
+	playerHealth = playerHealth < 0 ? 0 : playerHealth;
 
+	if (playerHealth <= 0) {
+		$('#playerLocation').find('div[id=healthPoints]').html("HP: 0")
+		gameOver();
+	}
+} 
+
+//Game ends
 function gameWon() {
-
-	alert("Mathematical!");
-
-	$("h1").html("Select your character!");
-	//Allows character to be chosen
-	var hasPlayerBeenChosen = false;
-	//Defines no enemy yet
-	var hasEnemyBeenChosen = false;
-	//prevents vs token from showing
-	$("#vsSymbol").hide();
-	//disables attack
-	$("#attackBtn").hide();
-	var enemiesLeft = 3;
-} //end gameWon
+	$("#characterSelectPanel").html("<h1 class='text-center'>Mathematical!</h1>");
+	gameEnd();
+}
 
 function gameOver() {
+	$("#characterSelectPanel").html("<h1 class='text-center'>You've been defeated!</h1>")
+	gameEnd();
+}
 
-	alert("Game over!");
-
-	$("h1").html("Select your character!");
-	//Allows character to be chosen
-	var hasPlayerBeenChosen = false;
-	//Defines no enemy yet
-	var hasEnemyBeenChosen = false;
-	//prevents vs token from showing
-	$("#vsSymbol").hide();
-	//disables attack
-	$("#attackBtn").hide();
-	var enemiesLeft = 3;
-} //end gameOver
-
-function counterAttack() {
-//redefines the player's health after enemy attack.
-$(".isPlayer").healthPoints = $(".isPlayer").healthPoints - $(".isUnderAttack").attackPoints;
-
-// $("#playerLocation").html("<img src = 'assets/images/pow (2).png'>");
-
-// $("#playerLocation").html(".isPlayer").delay(1000);
-	/*this will run after the game has checked whether an enemy has been defeated, 
-	so the player can kill an enemy if the counter attack would have killed them. */
-	if ($(".isPlayer").healthPoints <= 0) {
-		
-		gameOver();
-	} //end if statement
-} //end counterAttack
-
-var Finn =  {healthPoints: 200,
-			attackPoints: 8,
-			interval: 1,
-            id: $("finn")
-			};
-var theIceKing =  {healthPoints: 200,
-			attackPoints: 8,
-			interval: 1,
-            id: $("theIceKing")
-			};
-var LSP =  {healthPoints: 200,
-			attackPoints: 8,
-			interval: 1,
-            id: $("LSP")
-			};
-var LemonGrab =  {healthPoints: 200,
-			attackPoints: 8,
-			interval: 1,
-            id : $("LemonGrab")
-			};
-//This block of code is working
-//When an image of the characters is clicked on:
-	$(".charBtn").on("click", function () {
-	//If no character was clicked on before it:
-		if (hasPlayerBeenChosen === false) {
-			//Selection becomes the player's character
-			$(this).addClass("isPlayer");
-			//Blocks multiple characters from being selected
-			hasPlayerBeenChosen = true;
-			//Moves the image of the player into new area
-			$(this).appendTo("#playerLocation");
-			// $(".starthealthPoints").hide(this);
-			//Text on page changes play instructions.
-			$("h1").html("Select your opponent!");	
-			//The character can be clicked on and moved to 
-			//The enemy section, but cannot be replaced.
-			$(this).removeClass("enemyOption");
-			$(this).removeClass("characterOption");
-
-			if ($(this).hasClass("isPlayer")) {
-
-				$(this).removeClass("charBtn");
-				$(this).off("click");
-			} //ends internal if statment
-
-	//If a character has already been selected
-		} else if ((hasPlayerBeenChosen === true) //this } ends player selection
-		  && ($(this).hasClass("isUnderAttack"))) {
-
-				$(this).appendTo("#characterSelectPanel");
-
-				$(this).removeClass("isUnderAttack");
-
-				hasEnemyBeenChosen = false;
-
-		} else if ((hasEnemyBeenChosen === false) // this } ends if character has already been selected
-		  && (hasPlayerBeenChosen === true)) {
-			//Selection becomes player's opponent
-			$(this).addClass("isUnderAttack");
-			//Opponent moves to new area of the screen
-			$(this).appendTo("#enemyLocation");
-			//The vs token appears
-			$("#vsSymbol").fadeIn(500);
-			//The attack and clear buttons become available.
-			$("#attackBtn").show();
-			//Blocks multiple enemies from being selected.
-			hasEnemyBeenChosen = true;
-		} //ends enemy select statement
-	}); //end click functions
-	//Sets player's attack parameters
-
-	//Click function for attack button
-	$("#attackBtn").on("click", function () {
-		//calls player attack
-		playerAttack();
-
-	}); //ends attack
-});
-//Stats
-	//HP displayed at the bottom of the defender's picture.
-	//HP at the bottom of the player character's picture.
-
-// 	// Whenever the player clicks attack, their character damages the defender. 
-// 	// The opponent will lose HP (health points). 
-// 	// The opponent character will instantly counter the attack.
-// 	// the player's character will lose some of their HP. 
-// })
+function gameEnd() {
+	$("#vsSymbol", "#attackBtn").hide();
+	$("#battleArena").hide();
+	setTimeout(function() {gameReload(); }, 5000);	
+}
 
 
-//combatantDeathHandler
-	//enemy health is 0 or below, remove label
-	//combatantSelector occurs again
-	//The player wins the game by defeating all enemy characters. 
+function gameReload() {
+	location.reload();
+}
 
-//gameOver
-	//playerDeathHandler
-		//The player loses the game the game if their character's HP falls to zero or below.
-	//Display gameOver
-	// hasPlayerBeenChosen = false;
-	// //reset photo locations
-	// $("#vsLocation").hide();
-	//hide character stats
-	//reset character stats
+// function gameWon() {
+// 	$("h1").html("Mathematical!");
+// 	$("attackBtn").html("Play again?");
+// 	$("#vsSymbol").hide();
+// }
+
+// function gameOver() {
+// 	$("h1").html("Game over!");
+// 	$("attackBtn").html("Play again?");
+// 	$("#vsSymbol").hide();
+// }
+// Game Ending
